@@ -13,21 +13,18 @@ RUN apk add --no-cache \
     libpng-dev \
     oniguruma-dev \
     libxml2-dev \
-    openldap-dev \
     unzip \
     imap-dev \
     krb5-dev \
     openssh-client \
-    openssl \
     git \
     curl \
     bash \
     tzdata \
     mysql-dev \
     $PHPIZE_DEPS \
-    ca-certificates \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
-    && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd zip soap xml ldap imap \
+    && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd zip soap xml imap \
     && pecl update-channels \
     && pecl install -o -f redis \
     && docker-php-ext-enable redis imap \
@@ -36,9 +33,6 @@ RUN apk add --no-cache \
 
 # Копируем установщик расширений PHP из другого образа
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
-
-# # Устанавливаем расширение LDAP
-# RUN install-php-extensions ldap
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -51,12 +45,6 @@ RUN mkdir -p /home/$user/.composer && \
 
 # Копируем кастомный php.ini
 COPY php.ini /usr/local/etc/php/php.ini
-
-# Добавляем сертификаты если они есть
-
-# COPY some_root.crt some_sub.crt /usr/local/share/ca-certificates/
-
-# RUN update-ca-certificates
 
 WORKDIR /var/www/api
 

@@ -1,6 +1,6 @@
 version: "3.9"
 
-name: local
+name: scaffolder
 
 ######### Services ###################################
 services:
@@ -161,6 +161,6 @@ networks:
 volumes:
   container-volume:
   postgres_local_data:
-    external: true
+    external: false
   minio_local_data:
-    external: true
+    external: false

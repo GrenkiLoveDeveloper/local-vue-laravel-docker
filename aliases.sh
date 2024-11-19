@@ -17,8 +17,8 @@ alias dcrestart='winpty docker-compose restart'
 #показывает логи всех сервисов Docker Compose в режиме следования.
 alias dclogs='winpty docker-compose logs -f'
 
-#запускает composer update внутри контейнера api-local-app
-alias dcexec='winpty docker exec -it api-local-app composer update'
+#запускает composer update внутри контейнера api-vue-laravel-app
+alias dcexec='winpty docker exec -it api-vue-laravel-app composer update'
 
 # Для PowerShell
 # function dcup { docker-compose --env-file ./api/.env up $args }
@@ -26,4 +26,4 @@ alias dcexec='winpty docker exec -it api-local-app composer update'
 # function dcbuild { docker-compose build $args }
 # function dcrestart { docker-compose restart $args }
 # function dclogs { docker-compose logs -f $args }
-# function dcexec { docker exec -it api-local-app composer update }
+# function dcexec { docker exec -it api-vue-laravel-app composer update }

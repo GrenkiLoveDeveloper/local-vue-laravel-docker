@@ -4,8 +4,6 @@ USER root
 
 RUN apk update && apk --no-cache add supervisor
 
-RUN apk update && apk add --no-cache supervisor
-
 COPY supervisord.conf /etc/supervisord.conf
 COPY app.ini /etc/supervisor.d/app.ini
 COPY --chmod=755 entrypoint.sh /usr/local/bin/entrypoint.sh
